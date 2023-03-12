@@ -10,10 +10,10 @@ import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.event.player.ServerPostConnectEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
-import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.Player;import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.messages.LegacyChannelIdentifier;
-import org.slf4j.Logger;
+import com.velocitypowered.api.proxy.server.RegisteredServer;import org.slf4j.Logger;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -55,7 +55,6 @@ public class AdvancedPortalsPlugin {
     public void onPluginMessage(PluginMessageEvent event) {
         if(event.getIdentifier().equals(AP_CHANNEL)) {
             if(event.getSource() instanceof ServerConnection) {
-
                 ByteArrayDataInput in = ByteStreams.newDataInput(event.getData());
 
                 String subChannel = in.readUTF();
@@ -69,6 +68,8 @@ public class AdvancedPortalsPlugin {
 
                     proxy.getScheduler().buildTask(this, () -> PlayerDestiMap.remove(targetUUID))
                             .delay(10, TimeUnit.SECONDS).schedule();
+                    RegisteredServer server = proxy.getServer(targetServer).get();
+                    ((ServerConnection) event.getSource()).getPlayer().createConnectionRequest(server).fireAndForget();
                 }
                 else if (subChannel.equalsIgnoreCase(BungeeMessages.BUNGEE_COMMAND)) {
                     String command = in.readUTF();
