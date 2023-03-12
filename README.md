@@ -1,3 +1,7 @@
+This fork is designed to work with [FabricVelocityTeleportation](https://github.com/ElendilMC/FabricVelocityTeleportation)
+
+==============
+
 ![Advanced Portals](https://i.imgur.com/UIF6cQR.png)
 
 [![Discord](https://img.shields.io/discord/168282484037910528.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/fAJ3xJg)
