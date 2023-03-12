@@ -1,5 +1,4 @@
 This fork is designed to work with [FabricVelocityTeleportation](https://github.com/ElendilMC/FabricVelocityTeleportation)
-
 ==============
 
 ![Advanced Portals](https://i.imgur.com/UIF6cQR.png)
